@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ConvertidordeMedidas</string>
+    <string name="error_message">Error</string>
+    <string-array name="unidades_medida">
+        <item>Metro</item>
+        <item>Centímetro</item>
+        <item>Kilómetro</item>
+        <item>Pulgada</item>
+    </string-array>
+    <string name="title_activity_chat">ChatActivity</string>
+</resources>

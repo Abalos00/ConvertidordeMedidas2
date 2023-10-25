@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".Calculadora">
+
+    <TextView
+        android:id="@+id/textViewPantalla"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="30sp"
+        android:gravity="end"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:background="@android:color/darker_gray"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="427dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:columnCount="4"
+        android:rowCount="5">
+
+        <Button
+            android:id="@+id/buttonParentecis"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="( )"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonPorcentaje"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="%"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonDivision"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="/"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonMultiplicacion"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="*"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button7"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="7"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button8"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="8"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button9"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="9"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonSuma"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="+"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button4"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="4"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button5"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="5"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button6"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="6"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonResta"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="-"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button1"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="1"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button2"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="2"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button3"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="3"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonBorrar"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="⌫"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/button0"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="0"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonPunto"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="."
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonIgual"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="="
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/buttonLimpiar"
+            style="@style/CalculadoraButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#255127"
+            android:text="C"
+            android:textColor="#FFFFFF" />
+
+    </GridLayout>
+
+    <Spinner
+        android:id="@+id/spinnerUnidades"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/buttonConvertidor"
+        style="@style/CalculadoraButton"
+        android:layout_width="371dp"
+        android:layout_height="93dp"
+        android:backgroundTint="#255127"
+        android:text="Convertidor"
+        android:textColor="#FFFFFF" />
+
+
+</LinearLayout>

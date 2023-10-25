@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_green_dark"
+    android:backgroundTint="#255127"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MenuActivity">
+
+    <TextView
+        android:layout_width="405dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="#216824"
+        android:gravity="center"
+        android:text="Santo Tomas Convertidor de Medidas"
+        android:textColor="#FFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:layout_width="394dp"
+        android:layout_height="46dp"
+        android:background="@android:color/holo_green_dark"
+        android:backgroundTint="#FF000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="Avatar del usuario"
+            android:src="@drawable/usuarioicon" />
+
+        <TextView
+            android:id="@+id/textViewSaludo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="¡Bienvenido, Usuario!"
+            android:textColor="#FFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="394dp"
+        android:layout_height="46dp"
+        android:background="@android:color/holo_green_dark"
+        android:backgroundTint="#255127"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="354dp"
+        android:layout_height="524dp"
+        android:gravity="center">
+
+        <GridLayout
+            android:layout_width="314dp"
+            android:layout_height="449dp"
+            android:columnCount="2"
+            android:padding="16dp"
+            tools:context=".MenuActivity">
+
+            <ImageView
+                android:id="@+id/icon1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnSpan="2"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:contentDescription="Icono 1"
+                android:onClick="onIconClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/calculadoraicon" />
+
+            <ImageView
+                android:id="@+id/icon2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:contentDescription="Icono 2"
+                android:onClick="onIconClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/campanaicon" />
+
+            <ImageView
+                android:id="@+id/icon3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:contentDescription="Icono 3"
+                android:onClick="onIconClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/mapaicon" />
+
+            <ImageView
+                android:id="@+id/icon4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:contentDescription="Icono 4"
+                android:onClick="onIconClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/reglaicon" />
+
+            <ImageView
+                android:id="@+id/icon5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:contentDescription="Icono 5"
+                android:onClick="onIconClick"
+                android:scaleType="centerInside"
+                android:src="@drawable/mensajeicon" />
+
+        </GridLayout>
+    </LinearLayout>
+</LinearLayout>

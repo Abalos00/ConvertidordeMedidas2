@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".ContrasenaOlvidada">
+
+    <ImageView
+        android:id="@+id/logoImageView"
+        android:layout_width="300dp"
+        android:layout_height="327dp"
+        android:contentDescription="Logo de la aplicación"
+        android:src="@drawable/logog"
+        tools:layout_editor_absoluteX="56dp" />
+
+    <EditText
+        android:id="@+id/editTextCorreoElectronico"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/edittext_background_color"
+        android:hint="Correo Electrónico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logoImageView" />
+
+    <Button
+        android:id="@+id/buttonEnviarCorreo"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_background_color"
+        android:text="Enviar Correo de Recuperación"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="433dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
