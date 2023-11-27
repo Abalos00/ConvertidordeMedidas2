@@ -1,148 +1,171 @@
 package com.example.convertidordemedidas;
 
-import android.os.Bundle;
-import android.widget.Button;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.DecimalFormat;
+import net.objecthunter.exp4j.Expression;
+import net.objecthunter.exp4j.ExpressionBuilder;
 
 public class Calculadora extends AppCompatActivity {
 
-    private StringBuilder entrada = new StringBuilder();
-    private double valor1 = Double.NaN;
-    private double valor2;
-    private char operador;
-
-    private TextView pantalla;
+    private TextView textViewPantalla;
+    private Button btnBackToMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculadora);
 
-        pantalla = findViewById(R.id.textViewPantalla);
+        textViewPantalla = findViewById(R.id.textViewPantalla);
+        btnBackToMenu = findViewById(R.id.btnBackToMenu);
 
-        Button[] botonesNumericos = new Button[10];
-        for (int i = 0; i < 10; i++) {
-            int id = getResources().getIdentifier("button" + i, "id", getPackageName());
-            botonesNumericos[i] = findViewById(id);
-            botonesNumericos[i].setOnClickListener(view -> agregarDigito(((Button) view).getText().toString()));
+        // Configurar clics de botones numéricos
+        int[] numeros = {R.id.button0, R.id.button1, R.id.button2, R.id.button3, R.id.button4, R.id.button5, R.id.button6, R.id.button7, R.id.button8, R.id.button9};
+        for (int id : numeros) {
+            Button boton = findViewById(id);
+            boton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onNumeroClick(boton.getText().toString());
+                }
+            });
         }
 
-        Button botonPunto = findViewById(R.id.buttonPunto);
-        botonPunto.setOnClickListener(view -> agregarPunto());
+        // Configurar clics de operadores y otros botones
+        int[] operadores = {R.id.buttonSuma, R.id.buttonResta, R.id.buttonMultiplicacion, R.id.buttonDivision, R.id.buttonPunto};
+        for (int id : operadores) {
+            Button boton = findViewById(id);
+            boton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onOperadorClick(boton.getText().toString());
+                }
+            });
+        }
 
-        Button botonSuma = findViewById(R.id.buttonSuma);
-        botonSuma.setOnClickListener(view -> seleccionarOperador('+'));
-
-        Button botonResta = findViewById(R.id.buttonResta);
-        botonResta.setOnClickListener(view -> seleccionarOperador('-'));
-
-        Button botonMultiplicacion = findViewById(R.id.buttonMultiplicacion);
-        botonMultiplicacion.setOnClickListener(view -> seleccionarOperador('*'));
-
-        Button botonDivision = findViewById(R.id.buttonDivision);
-        botonDivision.setOnClickListener(view -> seleccionarOperador('/'));
-
+        // Configurar clic en el botón Igual
         Button botonIgual = findViewById(R.id.buttonIgual);
-        botonIgual.setOnClickListener(view -> calcularResultado());
+        botonIgual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onIgualClick();
+            }
+        });
 
+        // Configurar clic en el botón Limpiar
         Button botonLimpiar = findViewById(R.id.buttonLimpiar);
-        botonLimpiar.setOnClickListener(view -> reiniciarCalculadora());
+        botonLimpiar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLimpiarClick();
+            }
+        });
+
+        Button botonParentesis = findViewById(R.id.buttonParentecis);
+        botonParentesis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Obtener el texto actual en pantalla
+                String textoActual = textViewPantalla.getText().toString();
+
+                // Verificar si el último carácter es un paréntesis abierto
+                if (!textoActual.isEmpty() && textoActual.charAt(textoActual.length() - 1) == '(') {
+                    // Si es un paréntesis abierto, añadir un paréntesis cerrado
+                    textViewPantalla.append(")");
+                } else {
+                    // Si no es un paréntesis abierto, añadir un paréntesis abierto
+                    textViewPantalla.append("(");
+                }
+            }
+        });
+
+        Button botonPorcentaje = findViewById(R.id.buttonPorcentaje);
+        botonPorcentaje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Añadir el símbolo de porcentaje al texto en pantalla
+                textViewPantalla.append("%");
+            }
+        });
 
         Button botonBorrar = findViewById(R.id.buttonBorrar);
-        botonBorrar.setOnClickListener(view -> borrarUltimoDigito());
+        botonBorrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Eliminar un solo carácter del texto en pantalla
+                borrarCaracter();
+            }
+        });
 
-        Button botonConvertidor = findViewById(R.id.buttonConvertidor);
-        botonConvertidor.setOnClickListener(view -> {
-            Intent intent = new Intent(Calculadora.this, ConvertidorMedidas.class);
-            startActivity(intent);
+        btnBackToMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Lógica para volver al menú principal (MainActivity)
+                Intent intent = new Intent(Calculadora.this, MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button buttonConvertidor = findViewById(R.id.buttonConvertidor);
+        buttonConvertidor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Lógica para ir a la actividad ConvertidorMedidas
+                Intent intent = new Intent(Calculadora.this, ConvertidorMedidas.class);
+                startActivity(intent);
+            }
         });
     }
 
-    private void agregarDigito(String digito) {
-        entrada.append(digito);
-        actualizarPantalla();
+    private void onNumeroClick(String numero) {
+        // Añadir el número presionado al texto en pantalla
+        textViewPantalla.append(numero);
     }
 
-    private void agregarPunto() {
-        if (!entrada.toString().contains(".")) {
-            entrada.append(".");
-            actualizarPantalla();
+    private void onOperadorClick(String operador) {
+        // Añadir el operador presionado al texto en pantalla
+        textViewPantalla.append(operador);
+    }
+
+    private void onIgualClick() {
+        try {
+            // Obtener la expresión del texto en pantalla
+            String expresion = textViewPantalla.getText().toString();
+
+            // Reemplazar el símbolo de porcentaje con su equivalente en formato decimal
+            expresion = expresion.replaceAll("%", "/100");
+
+            // Evaluar la expresión
+            Expression e = new ExpressionBuilder(expresion).build();
+            double resultado = e.evaluate();
+
+            // Mostrar el resultado en la pantalla
+            textViewPantalla.setText(String.valueOf(resultado));
+        } catch (Exception e) {
+            // Manejar errores de expresión inválida
+            textViewPantalla.setText("Error");
         }
     }
 
-    private void seleccionarOperador(char op) {
-        if (!Double.isNaN(valor1)) {
-            valor2 = Double.parseDouble(entrada.toString());
-            calcularResultado();
-            operador = op;
-            entrada = new StringBuilder();
-            entrada.append(formatResultado(valor1));
-            entrada.append(operador);
-            actualizarPantalla();
-        } else {
-            valor1 = Double.parseDouble(entrada.toString());
-            operador = op;
-            entrada = new StringBuilder();
-            entrada.append(formatResultado(valor1));
-            entrada.append(operador);
-            actualizarPantalla();
+    private void onLimpiarClick() {
+        // Limpiar el texto en pantalla
+        textViewPantalla.setText("");
+    }
+
+    private void borrarCaracter() {
+        // Obtener el texto actual en pantalla
+        String textoActual = textViewPantalla.getText().toString();
+
+        // Verificar si hay caracteres para borrar
+        if (!textoActual.isEmpty()) {
+            // Eliminar el último carácter del texto
+            String nuevoTexto = textoActual.substring(0, textoActual.length() - 1);
+            textViewPantalla.setText(nuevoTexto);
         }
-    }
-
-    private void calcularResultado() {
-        if (!Double.isNaN(valor1)) {
-            valor2 = Double.parseDouble(entrada.toString());
-            switch (operador) {
-                case '+':
-                    valor1 += valor2;
-                    break;
-                case '-':
-                    valor1 -= valor2;
-                    break;
-                case '*':
-                    valor1 *= valor2;
-                    break;
-                case '/':
-                    if (valor2 != 0) {
-                        valor1 /= valor2;
-                    } else {
-                        pantalla.setText(getString(R.string.error_message));
-                        reiniciarCalculadora();
-                        return;
-                    }
-                    break;
-            }
-            entrada = new StringBuilder(formatResultado(valor1));
-            valor2 = Double.NaN;
-            actualizarPantalla();
-        }
-    }
-
-    private String formatResultado(double resultado) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##########");
-        return decimalFormat.format(resultado);
-    }
-
-    private void reiniciarCalculadora() {
-        entrada = new StringBuilder();
-        valor1 = Double.NaN;
-        valor2 = 0;
-        operador = ' ';
-        actualizarPantalla();
-    }
-
-    private void borrarUltimoDigito() {
-        if (entrada.length() > 0) {
-            entrada.deleteCharAt(entrada.length() - 1);
-            actualizarPantalla();
-        }
-    }
-
-    private void actualizarPantalla() {
-        pantalla.setText(entrada.toString());
     }
 }

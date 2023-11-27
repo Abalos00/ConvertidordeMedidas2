@@ -12,6 +12,9 @@ public class MenuActivity extends AppCompatActivity {
     private TextView textViewSaludo;
     private ImageView icon1ImageView;
     private ImageView icon2ImageView;
+    private ImageView icon3ImageView;
+    private ImageView icon4ImageView;
+    private ImageView icon5ImageView;
 
 
     @Override
@@ -21,6 +24,10 @@ public class MenuActivity extends AppCompatActivity {
 
         textViewSaludo = findViewById(R.id.textViewSaludo);
         icon1ImageView = findViewById(R.id.icon1);
+        icon2ImageView = findViewById(R.id.icon2);
+        icon3ImageView = findViewById(R.id.icon3);
+        icon4ImageView = findViewById(R.id.icon4);
+        icon5ImageView = findViewById(R.id.icon5);
 
         // Obtiene los datos del usuario que ha iniciado sesión correctamente
         Intent intent = getIntent();
@@ -44,9 +51,23 @@ public class MenuActivity extends AppCompatActivity {
 
         });
 
-        icon2ImageView = findViewById(R.id.icon2);
-
         icon2ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent convertidorIntent = new Intent(MenuActivity.this, NotiActivity.class);
+                startActivity(convertidorIntent);
+            }
+        });
+
+        icon3ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent convertidorIntent = new Intent(MenuActivity.this, MapaActivity.class);
+                startActivity(convertidorIntent);
+            }
+        });
+
+        icon4ImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent convertidorIntent = new Intent(MenuActivity.this, ConvertidorMedidas.class);
@@ -54,7 +75,13 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        icon5ImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent convertidorIntent = new Intent(MenuActivity.this, ChatActivity.class);
+                startActivity(convertidorIntent);
+            }
+        });
 
-        // Configura otros ImageViews y acciones de menú aquí
     }
 }

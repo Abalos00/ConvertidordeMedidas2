@@ -1,76 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
-    android:orientation="vertical"
-    android:padding="16dp"
-    tools:context=".ConvertidorMedidas">
+    android:background="@android:color/background_dark">
 
     <EditText
-        android:id="@+id/editTextValor"
+        android:id="@+id/editTextInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingresa el valor a convertir"
-        android:textSize="24sp"
-        android:gravity="end"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        android:background="@android:color/darker_gray"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Ingrese el valor"
+        android:inputType="numberDecimal"
+        android:background="@android:color/black"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"/>
 
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinnerFromUnit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_below="@id/editTextInput"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#255127"
+        android:textColor="#FFFFFF"/>
 
-        <Spinner
-            android:id="@+id/spinnerUnidadesOrigen"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"/>
-
-        <Spinner
-            android:id="@+id/spinnerUnidadesDestino"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <Spinner
+        android:id="@+id/spinnerToUnit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_below="@id/spinnerFromUnit"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#255127"
+        android:textColor="#FFFFFF"/>
 
-        <Button
-            android:id="@+id/buttonConvertir"
-            style="@style/CalculadoraButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#255127"
-            android:text="Convertir" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/buttonConvert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerToUnit"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#255127"
+        android:text="Convertir"
+        android:textColor="#FFFFFF"/>
 
     <TextView
-        android:id="@+id/textViewResultado"
+        android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="24sp"
-        android:gravity="end"
-        android:layout_gravity="center"
-        android:padding="8dp"
-        android:background="@android:color/darker_gray"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/buttonConvert"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:background="@android:color/black"
+        android:textColor="#FFFFFF"
+        android:padding="8dp"/>
 
-</LinearLayout>
+    <Button
+        android:id="@+id/btnBackToMenu"
+        android:layout_width="163dp"
+        android:layout_height="63dp"
+        android:layout_below="@+id/textViewResult"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="125dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="123dp"
+        android:layout_marginBottom="350dp"
+        android:backgroundTint="#255127"
+        android:text="Volver"
+        android:textColor="#FFFFFF" />
+
+
+</RelativeLayout>
